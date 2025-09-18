@@ -1,0 +1,445 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 26 77 58;
+    --foreground: 240 240 240;
+    --card: 20 50 35;
+    --card-foreground: 240 240 240;
+    --popover: 20 50 35;
+    --popover-foreground: 240 240 240;
+    --primary: 139 69 19;
+    --primary-foreground: 255 255 255;
+    --secondary: 210 180 140;
+    --secondary-foreground: 20 20 20;
+    --muted: 40 60 45;
+    --muted-foreground: 200 200 200;
+    --accent: 34 139 34;
+    --accent-foreground: 255 255 255;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 40 60 45;
+    --input: 40 60 45;
+    --ring: 139 69 19;
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    overflow-x: hidden;
+  }
+}
+
+/* Amazon Forest Background System */
+.forest-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background: linear-gradient(135deg, #0a1f0f 0%, #1a4d3a 25%, #2d5a3d 50%, #0f2419 75%, #0a1f0f 100%);
+}
+
+.forest-layer-1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120%;
+  height: 120%;
+  background-image: 
+    url('https://images.pexels.com/photos/1671325/pexels-photo-1671325.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop'),
+    linear-gradient(rgba(10, 31, 15, 0.7), rgba(26, 77, 58, 0.8));
+  background-size: cover, cover;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
+  background-blend-mode: overlay;
+  animation: forestParallax1 60s ease-in-out infinite;
+  opacity: 0.9;
+}
+
+.forest-layer-2 {
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 130%;
+  height: 130%;
+  background-image: 
+    url('https://images.pexels.com/photos/1671324/pexels-photo-1671324.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop'),
+    radial-gradient(circle at 30% 70%, rgba(34, 139, 34, 0.3) 0%, transparent 60%),
+    radial-gradient(circle at 70% 30%, rgba(107, 142, 35, 0.2) 0%, transparent 50%);
+  background-size: cover, 100% 100%, 100% 100%;
+  background-position: center, center, center;
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-blend-mode: multiply, normal, normal;
+  animation: forestParallax2 80s ease-in-out infinite reverse;
+  opacity: 0.7;
+}
+
+.forest-layer-3 {
+  position: absolute;
+  top: -5%;
+  left: -5%;
+  width: 110%;
+  height: 110%;
+  background-image: 
+    url('https://images.pexels.com/photos/1671327/pexels-photo-1671327.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop'),
+    linear-gradient(45deg, rgba(139, 69, 19, 0.1) 0%, transparent 30%, rgba(160, 82, 45, 0.1) 70%, transparent 100%);
+  background-size: cover, 100% 100%;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
+  background-blend-mode: soft-light;
+  animation: forestParallax3 100s linear infinite;
+  opacity: 0.6;
+}
+
+.forest-layer-4 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    url('https://images.pexels.com/photos/1671326/pexels-photo-1671326.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  opacity: 0.4;
+  animation: forestDepth 120s ease-in-out infinite;
+}
+
+.forest-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(ellipse at top left, rgba(34, 139, 34, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at top right, rgba(107, 142, 35, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom left, rgba(85, 107, 47, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
+    linear-gradient(180deg, rgba(10, 31, 15, 0.3) 0%, rgba(26, 77, 58, 0.2) 50%, rgba(45, 90, 61, 0.3) 100%);
+  animation: forestLight 40s ease-in-out infinite;
+}
+
+/* Forest Animation Keyframes */
+@keyframes forestParallax1 {
+  0%, 100% { transform: translateX(0px) translateY(0px) scale(1); }
+  25% { transform: translateX(-20px) translateY(-10px) scale(1.02); }
+  50% { transform: translateX(10px) translateY(-5px) scale(1.01); }
+  75% { transform: translateX(-10px) translateY(5px) scale(1.02); }
+}
+
+@keyframes forestParallax2 {
+  0%, 100% { transform: translateX(0px) translateY(0px) scale(1.05); }
+  33% { transform: translateX(15px) translateY(-8px) scale(1.03); }
+  66% { transform: translateX(-15px) translateY(8px) scale(1.04); }
+}
+
+@keyframes forestParallax3 {
+  0% { transform: translateX(-50px) translateY(0px) scale(1.1); }
+  50% { transform: translateX(50px) translateY(-20px) scale(1.08); }
+  100% { transform: translateX(-50px) translateY(0px) scale(1.1); }
+}
+
+@keyframes forestDepth {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.05); }
+}
+
+@keyframes forestLight {
+  0%, 100% { opacity: 1; }
+  25% { opacity: 0.8; }
+  50% { opacity: 0.9; }
+  75% { opacity: 0.7; }
+}
+
+/* Floating Forest Elements */
+.forest-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.leaf-particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, rgba(107, 142, 35, 0.8) 0%, rgba(85, 107, 47, 0.6) 100%);
+  border-radius: 50% 0;
+  animation: leafFall 15s linear infinite;
+}
+
+.leaf-particle:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 12s; }
+.leaf-particle:nth-child(2) { left: 20%; animation-delay: 2s; animation-duration: 15s; }
+.leaf-particle:nth-child(3) { left: 30%; animation-delay: 4s; animation-duration: 18s; }
+.leaf-particle:nth-child(4) { left: 40%; animation-delay: 1s; animation-duration: 14s; }
+.leaf-particle:nth-child(5) { left: 50%; animation-delay: 3s; animation-duration: 16s; }
+.leaf-particle:nth-child(6) { left: 60%; animation-delay: 5s; animation-duration: 13s; }
+.leaf-particle:nth-child(7) { left: 70%; animation-delay: 2.5s; animation-duration: 17s; }
+.leaf-particle:nth-child(8) { left: 80%; animation-delay: 4.5s; animation-duration: 11s; }
+.leaf-particle:nth-child(9) { left: 90%; animation-delay: 1.5s; animation-duration: 19s; }
+
+@keyframes leafFall {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Wood-inspired UI Components */
+.wood-card {
+  @apply relative backdrop-blur-xl border border-amber-700/20 rounded-2xl shadow-2xl;
+  background: linear-gradient(135deg, 
+    rgba(139, 69, 19, 0.15) 0%, 
+    rgba(160, 82, 45, 0.12) 25%, 
+    rgba(210, 180, 140, 0.08) 50%, 
+    rgba(139, 69, 19, 0.15) 100%);
+  backdrop-filter: blur(20px);
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(210, 180, 140, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.wood-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: 
+    linear-gradient(45deg, rgba(139, 69, 19, 0.05) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(139, 69, 19, 0.05) 25%, transparent 25%),
+    linear-gradient(90deg, rgba(210, 180, 140, 0.03) 50%, transparent 50%);
+  background-size: 30px 30px, 30px 30px, 60px 60px;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.wood-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    transparent 50%, 
+    rgba(139, 69, 19, 0.1) 100%);
+  pointer-events: none;
+}
+
+.wood-button {
+  @apply relative px-8 py-4 rounded-xl font-semibold text-white shadow-xl transition-all duration-500 transform;
+  background: linear-gradient(135deg, #8b4513 0%, #a0522d 50%, #cd853f 100%);
+  box-shadow: 
+    0 10px 25px rgba(139, 69, 19, 0.4),
+    0 0 0 1px rgba(210, 180, 140, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.wood-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%);
+  background-size: 20px 20px;
+  opacity: 0.3;
+}
+
+.wood-button:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 
+    0 15px 35px rgba(139, 69, 19, 0.5),
+    0 0 0 1px rgba(210, 180, 140, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.wood-button:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+/* Forest Reveal Animation */
+.forest-reveal {
+  @apply opacity-0 transform translate-y-12;
+  animation: forestReveal 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes forestReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+  }
+  60% {
+    opacity: 0.8;
+    transform: translateY(-5px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Hover Effects */
+.hover-lift {
+  @apply transition-all duration-500 transform;
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(210, 180, 140, 0.2);
+}
+
+/* Responsive Forest Background */
+@media (max-width: 768px) {
+  .forest-layer-1,
+  .forest-layer-2,
+  .forest-layer-3,
+  .forest-layer-4 {
+    background-attachment: scroll;
+  }
+  
+  .forest-layer-1 {
+    background-size: cover;
+    background-position: center center;
+  }
+  
+  .forest-layer-2 {
+    background-size: cover;
+    background-position: center center;
+  }
+  
+  .forest-layer-3 {
+    background-size: cover;
+    background-position: center center;
+  }
+  
+  .forest-layer-4 {
+    background-size: cover;
+    background-position: center center;
+  }
+}
+
+@media (max-width: 480px) {
+  .leaf-particle {
+    width: 6px;
+    height: 6px;
+  }
+  
+  .wood-card {
+    backdrop-filter: blur(15px);
+  }
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(26, 77, 58, 0.3);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #8b4513, #a0522d);
+  border-radius: 6px;
+  border: 2px solid rgba(26, 77, 58, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #a0522d, #cd853f);
+}
+
+/* Typography */
+.font-playfair {
+  font-family: var(--font-playfair);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.font-inter {
+  font-family: var(--font-inter);
+}
+
+/* Page Transition Effects */
+.page-transition {
+  animation: pageEnter 0.8s ease-out;
+}
+
+@keyframes pageEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Interactive Elements */
+.interactive-element {
+  @apply transition-all duration-300 cursor-pointer;
+}
+
+.interactive-element:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+/* Forest Depth Layers for Mobile */
+@media (max-width: 1024px) {
+  .forest-background {
+    background-size: cover;
+    background-position: center;
+    background-attachment: scroll;
+  }
+}
+
+/* Ultra-wide screen support */
+@media (min-width: 1920px) {
+  .forest-layer-1,
+  .forest-layer-2,
+  .forest-layer-3,
+  .forest-layer-4 {
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .wood-card {
+    backdrop-filter: blur(25px);
+  }
+}
